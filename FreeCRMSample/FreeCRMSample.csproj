@@ -88,7 +88,6 @@
     <Compile Include="pages\DealsPage.cs" />
     <Compile Include="pages\HomePage.cs" />
     <Compile Include="pages\LoginPage.cs" />
-    <Compile Include="pages\Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="testbase\TestBase.cs" />
     <Compile Include="testcases\ContactsPageTest.cs" />
