@@ -14,13 +14,16 @@ namespace FreeCRMSample.testcases
     [TestClass]
     public class ContactsPageTest : TestBase
     {
+        private TestContext _testContextInstance;
+        public TestContext TestContext
+        {
+            get { return _testContextInstance; }
+            set { _testContextInstance = value; }
+        }
         LoginPage loginPage;
         HomePage homePage;
         TestUtil testUtil;
         ContactsPage contactsPage;
-
-        int SheetNum = 1;
-
 
         public ContactsPageTest() : base()
         {
@@ -30,7 +33,7 @@ namespace FreeCRMSample.testcases
 
 
         [TestInitialize]
-        public void setUp()
+        public void SetUp()
         {
             initialization();
 	        testUtil = new TestUtil();
@@ -49,7 +52,7 @@ namespace FreeCRMSample.testcases
         }
 
         [TestMethod]
-        public void selectSingleContactsTest()
+        public void SelectSingleContactsTest()
         {
             contactsPage.SelectContactsByName("suraj suraj");
         }
@@ -61,25 +64,20 @@ namespace FreeCRMSample.testcases
 
         }*/
 
-        public Object[][] GetCRMTestData()
-        {
-            Object[][] data= TestUtil.GetTestData(SheetNum);
-		    return data;
-	    }
-
-
-        [DataTestMethod]
-
-        public void ValidateCreateNewContact(String title, String firstName, String lastName, String company)
+        [TestMethod]
+        [DeploymentItem("FreeCRMSample\\resources\\FreeCRMTestData.xlsx")]
+        [DataSource("MyExcelDataSource")]
+        public void ValidateCreateNewContact()
         {
             homePage.clickOnNewContactLink();
-            contactsPage.CreateNewContact(title, firstName, lastName, company);
+            contactsPage.CreateNewContact(_testContextInstance.DataRow["title"].ToString(), _testContextInstance.DataRow["firstName"].ToString(),
+                _testContextInstance.DataRow["lastName"].ToString(), _testContextInstance.DataRow["company"].ToString());
 
         }
 
 
         [TestCleanup]
-        public void tearDown()
+        public void TearDown()
         {
             driver.Quit();
         }

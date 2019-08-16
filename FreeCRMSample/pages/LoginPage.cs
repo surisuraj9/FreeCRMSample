@@ -23,7 +23,7 @@ namespace FreeCRMSample.pages
         [FindsBy(How = How.Name, Using = "password")]
         IWebElement password;
 
-        [FindsBy(How = How.XPath, Using = "//div[@id='preloader']")]
+        [FindsBy(How = How.XPath, Using = "//input[@value='login']")]
         IWebElement loginBtn;
 
         [FindsBy(How = How.LinkText, Using = "Sign Up")]

@@ -14,6 +14,12 @@ namespace FreeCRMSample.testcases
     [TestClass]
     public class LoginPageTest : TestBase
     {
+        private TestContext _testContextInstance;
+        public TestContext TestContext
+        {
+            get { return _testContextInstance; }
+            set { _testContextInstance = value; }
+        }
         LoginPage loginPage;
         HomePage homePage;
         public LoginPageTest() : base()
@@ -46,6 +52,16 @@ namespace FreeCRMSample.testcases
         {
             TestBase.driver.SwitchTo().ParentFrame();
             homePage = loginPage.Login(ConfigurationManager.AppSettings["username"], ConfigurationManager.AppSettings["password"]);
+
+        }
+
+        [TestMethod]
+        [DeploymentItem("FreeCRMSample\\resources\\FreeCRMTestData.xlsx")]
+        [DataSource("MyExcelDataSource")]
+        public void Test()
+        {
+            _testContextInstance.WriteLine(_testContextInstance.DataRow["ConnectionStrings"].ToString());
+            Assert.IsTrue(true);
 
         }
 
