@@ -47,15 +47,7 @@ namespace FreeCRMSample.pages
         {
             username.SendKeys(un);
             password.SendKeys(pwd);
-            WebDriverWait webDriverWait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
-            try
-            {
-                webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath("//input[@value='Login']"))).Click();
-            }
-            catch(Exception e)
-            {
-               Console.WriteLine(e.Message);
-            }
+            loginBtn.Click();
             return new HomePage();
         }
     }
